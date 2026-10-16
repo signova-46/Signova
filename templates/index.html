@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <header>Signova</header>
+</head>
+
+<body>
+
+    <h1>Sign-up</h1>
+    <h2>
+        <nav>
+            <a href="{{ url_for('contact')}}">Contact us</a>
+            <a href="{{ url_for('about')}}">About us</a>
+        </nav>
+    </h2>
+    <form method="post" style="text-align: center"
+        onsubmit="if(password.value!==confirm_password.value){err.style.display='block';return false;}">
+        
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" pattern="^[a-zA-Z0-9_]{3,20}$"
+                placeholder="Enter your username" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" pattern=".+@gmail\.com" placeholder="Enter your email"
+                required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input id="password" name="password" type="password" pattern="[A-Za-z\d@$!%*?&]{8,}$"
+                placeholder="Enter your password" required>
+            </div>
+            <div>
+                <label for="confirm_password" style="text-align: center;color: white">Confirm Password:</label>
+                <input id="confirm_password" name="confirm_password" type="password" pattern="[A-Za-z\d@-$!%*?&]{8,}$"
+                placeholder="Confirm your password" required>
+                <span id="err" style="color: red; display: none;">⚠️ Passwords do not match!</span>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+           {% for category, message in messages %}
+               <div class="flash {{ category }}">{{ message }}</div>
+           {% endfor %}
+           {% endwith %}
+            <button type="submit">Sign-up</button>
+            <nav><a href="{{url_for('login')}}"><u>Already have an account?</u></a></nav>
+        </form>
+        <footer>Copyright &copy; 2026 | All rights reserved</footer>
+    </body>
+
+</html>

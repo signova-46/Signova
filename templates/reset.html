@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title> 
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <header>Signova</header>
+</head>
+
+<body>
+    <h1>Reset your Password</h1>
+    <form method="POST">
+        <div>
+            <label for="password">New Password</label>
+            <input id="password" name="password" type="password" pattern="[A-Za-z\d@-$!%*?&]{8,}$"
+                placeholder="Enter new password" required>
+        </div>
+        <div>
+            <label for="password">Confirm Password</label>
+            <input id="confirm_password" name="confirm_password" type="password" pattern="[A-Za-z\d@-$!%*?&]{8,}$"
+                placeholder="Confirm password" required>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endwith %}
+        <button type="submit">Reset Password</button>
+</body>
+
+</html>

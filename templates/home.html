@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <header>Signova</header>
+</head>
+<body>
+    <h1>Home</h1>
+    <h2>
+        <nav>
+            <a href="{{ url_for('contact')}}">Contact us</a>
+            <a href="{{ url_for('about')}}">About us</a>
+        </nav>
+    </h2>
+    <form>
+        <p>
+            Hey {{session.username}}, this is the home page of Signova.
+        </p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <header>Signova</header>
+</head>
+
+<body>
+    <h1>Log-in</h1>
+    <h2>
+        <nav>
+            <a href="{{ url_for('contact')}}">Contact us</a>
+            <a href="{{ url_for('about')}}">About us</a>
+        </nav>
+    </h2>
+    <form method="post" style="text-align: center"
+        onsubmit="if(login.value.trim()==='' || password.value===''){err.style.display='block';return false;}">
+        <div>
+            <label for="username and email">Username or Email:</label>
+            <input type="text" name="login" placeholder="Enter your email or username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input id="password" name="password" type="password" pattern="[A-Za-z\d@$-!%*?&]{8,}$"
+                placeholder="Enter your password" required>
+            <span id="err" style="color: red; display: none;">⚠️ Invalid Password!</span>
+        </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endwith %}
+        <button type="submit">Log-in</button>
+        <nav><a href="{{url_for('forgot')}}"><u>Forgot Password?</u></a></nav>
+        <br>
+        <a href="{{url_for('signup')}}" class="signup-button">Create new account</a>
+    </form>
+</body>
+<footer>
+    Copyright &copy; 2026 | All rights reserved
+</footer>
+
+</html>
