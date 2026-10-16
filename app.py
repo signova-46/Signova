@@ -6,12 +6,20 @@ from werkzeug.security import generate_password_hash,check_password_hash
 app=Flask(__name__)
 app.secret_key="change this to a random secret"
 
+
 def getdb():
     return mysql.connector.connect(
-        host='localhost', user='root',
-        password='211013', database='Sign_up',
+        host=os.environ["DB_HOST"],
+        port=int(os.environ["DB_PORT"]),
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASSWORD"],
+        database=os.environ["DB_NAME"],
+        ssl_ca=os.path.join(os.path.dirname(__file__), "ca.pem"),
+        ssl_verify_cert=True,
+        ssl_verify_identity=True,
         use_pure=True
     )
+
 
 @app.route("/")
 def signova():
