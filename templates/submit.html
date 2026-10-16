@@ -10,11 +10,14 @@
 </head>
 
 <body>
-    
-    <h1>Congratulations!</h1>
+    <div>
+        <h1><button type="button" onclick="history.back()">
+                ← Back
+            </button>Congratulations!</h1>
+    </div>
     <form>
-    <p>Welcome to Signova.<br>You have successfulled registered!</p>
-    <a href="{{ url_for('home') }}" class="home-button">Move to Home Page</a>
+        <p>Welcome to Signova.<br>You have successfulled registered!</p>
+        <a href="{{ url_for('home') }}" class="home-button">Move to Home Page</a>
     </form>
     <h2>
         <nav>

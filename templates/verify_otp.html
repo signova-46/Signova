@@ -10,7 +10,11 @@
 </head>
 
 <body>
-    <h1>Verify OTP</h1>
+    <div>
+        <h1><button type="button" onclick="history.back()">
+                ← Back
+            </button>Verify OTP</h1>
+    </div>
     <h2>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
@@ -20,7 +24,7 @@
     <form method="POST" action="{{ url_for('verify_otp') }}">
         <div>
             <label for="otp">Enter 6-digit Verification Code</label>
-            <input type="text" id="otp" name="otp" pattern=[0-9]{6} maxlength="6" placeholder="Enter OTP" required >
+            <input type="text" id="otp" name="otp" pattern=[0-9]{6} maxlength="6" placeholder="Enter OTP" required>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}

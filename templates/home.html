@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,13 @@
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
     <header>Signova</header>
 </head>
+
 <body>
-    <h1>Home</h1>
+    <div>
+        <h1><button type="button" onclick="history.back()">
+                ← Back
+            </button>Home</h1>
+    </div>
     <h2>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
@@ -22,4 +28,5 @@
     </form>
     <footer>Copyright &copy; 2026 | All rights reserved</footer>
 </body>
+
 </html>

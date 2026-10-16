@@ -36,7 +36,7 @@
 
        h1 {
            width: min(1100px, 100%);
-           margin: 20px auto 18px;
+           margin: 20px 20px 19px 18px;
            color: var(--paper) !important;
            font-family: "Space Grotesk", sans-serif;
            font-size: clamp(45px, 5vw, 50px);
@@ -381,4 +381,14 @@
             font-size: xx-large;
             color: #c62828;
             border: #e6e9e4;
+        }
+
+        h1 button{
+           margin:0px 60px 0px 0px;
+           background-color:var(--accent);
+           border: #101416;
+        }
+
+        h1 button:hover {
+            background-color: #aa2d2d;
         }

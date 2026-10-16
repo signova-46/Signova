@@ -10,7 +10,11 @@
 </head>
 
 <body>
-    <h1>Log-in</h1>
+    <div>
+        <h1><button type="button" onclick="history.back()">
+                ← Back
+            </button>Log-in</h1>
+    </div>
     <h2>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
@@ -29,9 +33,9 @@
                 placeholder="Enter your password" required>
             <span id="err" style="color: red; display: none;">⚠️ Invalid Password!</span>
         </div>
-                {% with messages = get_flashed_messages(with_categories=true) %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}
-            <div class="flash {{ category }}">{{ message }}</div>
+        <div class="flash {{ category }}">{{ message }}</div>
         {% endfor %}
         {% endwith %}
         <button type="submit">Log-in</button>

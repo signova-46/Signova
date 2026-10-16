@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,23 @@
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
     <header>Signova</header>
 </head>
+
 <body>
-    <h1>Welcome back</h1>
-        <h2>
+    <div>
+        <h1><button type="button" onclick="history.back()">
+                ← Back
+            </button>Welcome back</h1>
+    </div>
+    <h2>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
             <a href="{{ url_for('about')}}">About us</a>
         </nav>
     </h2>
     <form>
-    <p>Welcome back to Signova {{ session.username }}.</p>
-    <a href="{{ url_for('home') }}" class="home-button">Move to Home Page</a>
+        <p>Welcome back to Signova {{ session.username }}.</p>
+        <a href="{{ url_for('home') }}" class="home-button">Move to Home Page</a>
     </form>
 </body>
+
 </html>

@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title> 
+    <title>Reset Password</title>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
     <header>Signova</header>
 </head>
 
 <body>
-    <h1>Reset your Password</h1>
+    <div>
+        <h1><button type="button" onclick="history.back()">
+                ← Back
+            </button>Reset your Password</h1>
+    </div>
     <form method="POST">
         <div>
             <label for="password">New Password</label>
@@ -29,5 +33,6 @@
         {% endwith %}
         <button type="submit">Reset Password</button>
 </body>
-   <footer>Copyright &copy; 2026 | All rights reserved</footer>
+<footer>Copyright &copy; 2026 | All rights reserved</footer>
+
 </html>
