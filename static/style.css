@@ -1,394 +1,359 @@
-       /* CSS for sign-up */
-       @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
+:root {
+    color-scheme: dark;
+    --paper: #f0f2ee;
+    --muted: #b8c0bc;
+    --accent: #C03737;
+    --line: rgba(240, 242, 238, 0.18);
 
-       :root {
-           color-scheme: dark;
-           --paper: #f0f2ee;
-           --muted: #b8c0bc;
-           --accent: #C03737;
-           --line: rgba(240, 242, 238, 0.18);
-           font-family: "DM Sans", sans-serif;
-       }
+    font-family: "DM Sans", sans-serif;
+}
 
-       * {
-           box-sizing: border-box;
-       }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-       html{
-        min-height:100%
-       }
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
 
-       body {
-           min-height: 100vh;
-           margin: 0;
-           padding: 38px 32px 72px;
-           color: var(--paper);
-           background-color: #101416;
-           background-image: linear-gradient(110deg, rgba(8, 12, 14, 0.88), rgba(8, 12, 14, 0.45) 58%, rgba(8, 12, 14, 0.76)), url("https://wallpapercat.com/w/middle-retina/d/a/e/5819289-3840x2160-desktop-hd-pc-background.jpg");
-           background-position: center;
-           background-size: cover;
-           background-attachment: fixed;
-           background-repeat: no-repeat;
-           display: flex;
-           flex-direction: column;
-       }
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 38px 32px 24px;
 
-       h1 {
-           width: min(1100px, 100%);
-           margin: 20px 20px 19px 18px;
-           color: var(--paper) !important;
-           font-family: "Space Grotesk", sans-serif;
-           font-size: clamp(45px, 5vw, 50px);
-           font-weight: 600;
-           line-height: 1;
-           text-align: left !important;
-       }
+    display: flex;
+    flex-direction: column;
 
-       h1 u {
-           text-decoration: none;
-       }
+    color: var(--paper);
+    background-color: #101416;
+    background-image:
+        linear-gradient(
+            110deg,
+            rgba(8, 12, 14, 0.88),
+            rgba(8, 12, 14, 0.45) 58%,
+            rgba(8, 12, 14, 0.76)
+        ),
+        url("https://wallpapercat.com/w/middle-retina/d/a/e/5819289-3840x2160-desktop-hd-pc-background.jpg");
 
-       h2 {
-           position: absolute;
-           top: 28px;
-           right: max(32px, calc((100vw - 1080px) / 2));
-           margin: 0;
-           font-size: 14px;
-           font-weight: 500;
-       }
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
-       nav {
-           display: flex;
-           align-items: center;
-           gap: 30px;
-       }
+h1 {
+    width: 100%;
+    max-width: 1100px;
+    margin: 20px 0 19px;
 
-       nav a {
-           color: var(--paper) !important;
-           text-decoration: none;
-           transition: color 160ms ease;
-       }
+    color: var(--paper);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(28px, 5vw, 50px);
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: left;
+}
 
-       nav a:hover {
-           color: var(--accent) !important;
-       }
+h1 u {
+    text-decoration: none;
+}
 
-       form {
-           width: min(400px, 100%);
-           margin: 15px 20px 10px 20px;
-           padding: 40px 36px 35px;
-           border: 1px solid var(--line);
-           border-radius: 8px;
-           background: rgba(13, 19, 21, 0.9);
-           box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
-           text-align: left !important;
-           backdrop-filter: blur(14px);
-       }
+h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
 
-       form br {
-           display: none;
-       }
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
 
-       form label {
-           display: block;
-           margin: 0 0 4px;
-           color: #e6e9e4 !important;
-           font-size: 13px;
-           font-weight: 600;
-           text-align: left !important;
-       }
+nav a {
+    color: var(--paper);
+    text-decoration: none;
+    transition: color 160ms ease;
+}
 
-       form input {
-           display: block;
-           width: 100%;
-           height: 40px;
-           margin: 0 0 20px;
-           padding: 0 14px;
-           border: 1px solid rgba(240, 242, 238, 0.2);
-           border-radius: 4px;
-           outline: none;
-           color: var(--paper);
-           background: rgba(255, 255, 255, 0.06);
-           font: inherit;
-           font-size: 14px;
-           transition: border-color 160ms ease, background 160ms ease;
-       }
+nav a:hover {
+    color: var(--accent);
+}
 
-       form input::placeholder {
-           color: #929c98;
-       }
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: 15px 0 10px;
+    padding: 40px 36px 35px;
 
-       form input:focus {
-           border-color: var(--accent);
-           background: rgba(255, 255, 255, 0.09);
-       }
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(13, 19, 21, 0.9);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
 
-       form button {
-           display: flex;
-           width: 100%;
-           min-height: 38px;
-           align-items: center;
-           justify-content: center;
-           margin-top: 4px;
-           border: 0;
-           border-radius: 4px;
-           color: #151a14;
-           background: var(--accent);
-           cursor: pointer;
-           font: inherit;
-           font-size: 14px;
-           font-weight: 700;
-           transition: background 160ms ease, transform 160ms ease;
-       }
+    text-align: left;
+    backdrop-filter: blur(14px);
+}
 
-       form button:hover {
-           transform: translateY(-1px);
-           background: #aa2d2d;
-       }
+form br {
+    display: none;
+}
 
-       footer {
-           margin-top:auto;
-           color: var(--muted);
-           font-size: 12px;
-           text-align: center;
-       }
+form label {
+    display: block;
+    margin: 0 0 4px;
 
-       @media (max-width: 600px) {
-           body {        
-               padding: 92px 18px 42px;
-           }
+    color: #e6e9e4;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+}
 
-           h1 {
-               margin: 8px auto 18px;
-               font-size: smaller;
-           }
+form input,
+form select,
+form textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0 0 20px;
+    padding: 10px 14px;
 
-           h2 {
-               top: 22px;
-               right: 18px;
-               left: 18px;
-               font-size: 13px;
-           }
+    border: 1px solid rgba(240, 242, 238, 0.2);
+    border-radius: 4px;
+    outline: none;
 
-           nav {
-               justify-content: flex-end;
-               gap: 18px;
-           }
+    color: var(--paper);
+    background: rgba(255, 255, 255, 0.06);
+    font: inherit;
+    font-size: 14px;
+}
 
-           form {
-               margin-top: 26px;
-               padding: 27px 22px 24px;
-           }
-       }
+form input {
+    height: 40px;
+}
 
-       @media (prefers-reduced-motion: reduce) {
+form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
 
-           *,
-           *::before,
-           *::after {
-               scroll-behavior: auto !important;
-               transition-duration: 0.01ms !important;
-           }
-       }
+form input::placeholder,
+form textarea::placeholder {
+    color: #929c98;
+}
 
-       /* Css for about */
-       body {
-           background-color: rgb(8, 12, 14);
-           color: rgb(245, 242, 242);
-           font-family: Arial, sans-serif;
-           margin: 0;
-           padding: 20px;
-       }
-       form {
-            width: min(400px, 100%);
-            margin: 15px 20px 10px 20px;
-            padding: 40px 36px 35px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: rgba(13, 19, 21, 0.9);
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
-            text-align: left !important;
-            backdrop-filter: blur(14px);
-        }
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.09);
+}
 
-        form br{
-            display: none;
-        }
+form button {
+    display: flex;
+    width: 100%;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+    padding: 10px 14px;
 
-       h1 {
-           text-align: center;
-       }
+    border: 0;
+    border-radius: 4px;
 
-       p {
-           text-align: center;
-       }
+    color: #fff;
+    background: var(--accent);
+    cursor: pointer;
 
-       nav {
-           text-align: center;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 160ms ease, transform 160ms ease;
+}
 
-           margin-top: 20px;
-       }
+form button:hover {
+    transform: translateY(-1px);
+    background: #aa2d2d;
+}
 
-       nav a {
-           color: rgb(192, 55, 55);
-           margin: 0 10px;
-       }
+img,
+video,
+iframe {
+    max-width: 100%;
+}
 
-       /* CSS for contact */
-       body {
-           background-color: rgb(8, 12, 14);
-           color: rgb(245, 242, 242);
-           font-family: Arial, sans-serif;
-           margin: 0;
-           padding: 20px;
-       }
+img,
+video {
+    height: auto;
+}
 
-        form {
-           width: min(400px, 100%);
-           margin: 15px 20px 10px 20px;
-           padding: 40px 36px 35px;
-           border: 1px solid var(--line);
-           border-radius: 8px;
-           background: rgba(13, 19, 21, 0.9);
-           box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
-           text-align: left !important;
-           backdrop-filter: blur(14px);
-       }
+p {
+    line-height: 1.6;
+}
 
-       h1 {
-           text-align: center;
-       }
+footer {
+    margin-top: auto;
+    padding-top: 24px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
 
-       p {
-           text-align: center;
-       }
+.login-button,
+.home-button {
+    display: inline-block;
+    margin: 0;
+    padding: 10px 18px;
+    border-radius: 4px;
 
-       nav {
-           text-align: center;
-           margin-top: 20px;
-       }
+    color: white;
+    background-color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+}
 
-       nav a {
-           color: rgb(192, 55, 55);
-           margin: 0 10px;
-       }
-       
+.login-button:hover,
+.home-button:hover {
+    background-color: #9e2b2b;
+}
 
-       /* Css for home */
-       body {
-           background-color: rgb(8, 12, 14);
-           color: rgb(245, 242, 242);
-           font-family: Arial, sans-serif;
-           margin: 0;
-           padding: 20px;
-       }
+.signup-button {
+    display: inline-block;
+    max-width: 100%;
+    padding: 10px 24px;
+    border-radius: 4px;
 
-        form {
-           width: min(400px, 100%);
-           margin: 15px 20px 10px 100px;
-           padding: 40px 36px 35px;
-           border: 1px solid var(--line);
-           border-radius: 8px;
-           background: rgba(13, 19, 21, 0.9);
-           box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
-           text-align: left !important;
-           backdrop-filter: blur(14px);
-       }
+    color: white;
+    background-color: rgba(201, 187, 187, 0.171);
+    text-decoration: none;
+    cursor: pointer;
+}
 
-       form br{
-            display:block;
-        }
+.signup-button:hover {
+    background-color: rgba(66, 60, 60, 0.822);
+}
 
-    .login-button {
-        display: inline-block;
-        margin:0px 0px 0px 60px;
-        padding: 10px 18px;
-        border-radius: 4px;
-        color: white;
-        background-color: rgb(192, 55, 55);
-        text-decoration: none;
-        cursor: pointer;
+.flash {
+    color: #ffb4b4;
+}
+
+.flash.error {
+    color: #ffb4b4;
+}
+
+header {
+    font-size: clamp(22px, 4vw, 32px);
+    color: #c62828;
+}
+
+h1 button {
+    margin: 0;
+    border: 0;
+    background-color: var(--accent);
+}
+
+h1 button:hover {
+    background-color: #aa2d2d;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 28px 22px 20px;
+        background-attachment: scroll;
     }
 
-    .login-button:hover {
-        background-color: rgb(158, 43, 43);
-    }
-    
     h1 {
-        text-align: left;
+        font-size: clamp(28px, 6vw, 42px);
     }
-    
-    p {
-        text-align: center;
-    }
-    
+
     nav {
+        gap: 14px;
+    }
+
+    form {
+        padding: 30px 26px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 82px 16px 20px;
+    }
+
+    h1 {
+        margin: 8px 0 18px;
+        font-size: clamp(26px, 8vw, 36px);
+        overflow-wrap: anywhere;
+    }
+
+    h2 {
+        position: absolute;
+        top: 18px;
+        right: 16px;
+        left: 16px;
+        font-size: 13px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    form {
+        max-width: 100%;
+        margin: 20px 0;
+        padding: 26px 20px 24px;
+    }
+
+    .login-button,
+    .home-button,
+    .signup-button {
+        max-width: 100%;
         text-align: center;
-        margin-top: 20px;
-       }
+    }
 
-       nav a {
-           color: rgb(192, 55, 55);
-           margin: 0 10px;
-        }
-       
-        body h1 {
-            color: rgb(192, 55, 55) !important;
-        }
-        
-        .signup-button {
-            display: inline-block;
-            padding: 10px 90px;
-            border-radius: 4px;
-            color: white;
-            background-color: rgba(201, 187, 187, 0.171);
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        .signup-button:hover {
-            background-color: rgba(66, 60, 60, 0.822);
-        }
-        
-        .home-button {
-            display: inline-block;
-            margin:0px 0px 0px 60px;
-            padding: 10px 18px;
-            border-radius: 4px;
-            color: white;
-            background-color: rgb(192, 55, 55);
-            text-decoration: none;
-            cursor: pointer;
-        }
-    
-        .home-button:hover {
-            background-color: rgb(158, 43, 43);
-        }
-        
-        form nav a{
-            text-align: center;
-        }
+    footer {
+        padding-top: 20px;
+    }
+}
 
-        .flash{ 
-            color:#ffb4b4
-        }
-        .flash.error {
-            color: #ffb4b4;
-        }
+@media (max-width: 360px) {
+    body {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
 
-        header{
-            font-size: xx-large;
-            color: #c62828;
-            border: #e6e9e4;
-        }
+    form {
+        padding: 22px 15px;
+    }
 
-        h1 button{
-           margin:0px 60px 0px 0px;
-           background-color:var(--accent);
-           border: #101416;
-        }
+    nav {
+        gap: 9px;
+    }
 
-        h1 button:hover {
-            background-color: #aa2d2d;
-        }
+    nav a {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

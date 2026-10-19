@@ -105,8 +105,6 @@ def login():
 
 OTP_TTL=300
 MAX_ATTEMPTS=5
-MAIL_USER="signovabyali@gmail.com"
-MAIL_APP_PASSWORD="tkof cult bbwc udaz"
 
 def hash_otp(otp):
     return hmac.new(app.secret_key.encode(),otp.encode(),hashlib.sha256).hexdigest()
