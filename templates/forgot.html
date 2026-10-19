@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
-    <header>Signova</header>
+    <div><header>Signova
+    <h2>
+        <nav>
+            <a href="{{ url_for('contact')}}">Contact us</a>
+            <a href="{{ url_for('about')}}">About us</a>
+        </nav>
+    </h2></header></div>
 </head>
 
 <body>
@@ -15,12 +21,6 @@
                 ← Back
             </button>Forgot your password</h1>
     </div>
-    <h2>
-        <nav>
-            <a href="{{ url_for('contact')}}">Contact us</a>
-            <a href="{{ url_for('about')}}">About us</a>
-        </nav>
-    </h2>
     <form method="POST" action="{{ url_for('forgot') }}">
         <div>
             <label for="email">Email</label>
