@@ -1,9 +1,7 @@
-       /* CSS for sign-up */
        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
 
        :root {
-           position: fixed;
            color-scheme: dark;
            --paper: #f0f2ee;
            --muted: #b8c0bc;
