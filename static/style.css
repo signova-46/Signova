@@ -231,7 +231,7 @@
             width: 100%;
             min-width: 0;
             padding: clamp(20px, 4vw, 48px) clamp(16px, 5vw, 56px) 36px;
-            background-attachment: scroll;
+            background-attachment:fixed;
         }
 
         h1 {
