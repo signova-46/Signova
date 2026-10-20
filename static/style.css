@@ -3,6 +3,7 @@
 
 
        :root {
+           position: fixed;
            color-scheme: dark;
            --paper: #f0f2ee;
            --muted: #b8c0bc;

@@ -1,5 +1,4 @@
-Create database Signova_users;
-use Signova_users;
+use defaultdb;
 Create TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
