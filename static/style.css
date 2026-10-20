@@ -280,6 +280,7 @@
         @media (max-width: 700px) {
             body {
                 padding: 78px 16px 32px;
+                background-attachment: scroll;
             }
 
             h1 {
