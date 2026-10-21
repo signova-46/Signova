@@ -5,30 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signova</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css' )}}">
-    <header>Signova</header>
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 
 <body>
-
-
-    <h1>Welcome to Signova</h1>
-    <h2>
+    <header>
+        <h1>Signova</h1>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
             <a href="{{ url_for('about')}}">About us</a>
         </nav>
-    </h2>
+    </header>
+
+
+    <h2 class="heading">Welcome to Signova</h2>
+
     <form>
         <p>Welcome to our site 'Signova'.<br>Confirm your details to start the journey.</p>
-        <nav>
+        <div class="action-button">
             <a href="{{ url_for('login') }}" class="login-button">Log-in</a>
-            <a href="{{ url_for('signup')}}"><u>Sign-up</u></a>
-        </nav>
+            <nav>
+                <a href="{{ url_for('signup')}}"><u>Sign-up</u></a>
+            </nav>
+        </div>
     </form>
+
+    <footer>
+        Copyright &copy; 2026 | All rights reserved
+    </footer>
 </body>
-<footer>
-    Copyright &copy; 2026 | All rights reserved
-</footer>
+
 
 </html>

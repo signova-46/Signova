@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
-    <header>Signova</header>
 </head>
 
 <body>
-    <div>
-        <h1><button type="button" onclick="history.back()">
-                ← Back
-            </button>Contact Us</h1>
-    </div>
-    <h2>
+    <header>
+        <h1>Signova</h1>
         <nav>
             <a href="{{ url_for('about')}}">About us</a>
         </nav>
-    </h2>
+    </header>
+    <div>
+        <button type="button" onclick="history.back()">
+            ← Back
+        </button>
+        <h2>Contact Us</h2>
+    </div>
     <form>
         <p>Hi any questions? <br> You can reach me at: <a
                 href="mailto:m.alisheikh046@gmail.com">m.alisheikh046@gmail.com</a></p>

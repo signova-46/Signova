@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Back</title>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
-    <header>Signova</header>
 </head>
 
 <body>
-    <div>
-        <h1><button type="button" onclick="history.back()">
-                ← Back
-            </button>Welcome back</h1>
-    </div>
-    <h2>
+    <header>
+        <h1>Signova</h1>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
             <a href="{{ url_for('about')}}">About us</a>
         </nav>
-    </h2>
+    </header>
+    <div>
+        <button type="button" onclick="history.back()">
+            ← Back
+        </button>
+        <h2>Welcome back</h2>
+    </div>
     <form>
         <p>Welcome back to 'Signova' ,{{ session.username }}.</p>
         <a href="{{ url_for('home') }}" class="home-button">Move to Home Page</a>

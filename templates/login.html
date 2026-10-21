@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
-    <header>Signova</header>
 </head>
 
 <body>
-    <div>
-        <h1><button type="button" onclick="history.back()">
-                ← Back
-            </button>Log-in</h1>
-    </div>
-    <h2>
+    <header>
+        <h1>Signova</h1>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
             <a href="{{ url_for('about')}}">About us</a>
         </nav>
-    </h2>
+    </header>
+    <div>
+        <button type="button" onclick="history.back()">
+            ← Back
+        </button>
+        <h2>Log-in</h2>
+    </div>
     <form method="post" style="text-align: center"
         onsubmit="if(login.value.trim()==='' || password.value===''){err.style.display='block';return false;}">
         <div>

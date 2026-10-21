@@ -14,18 +14,14 @@
            box-sizing: border-box;
        }
 
-       html{
-        min-height:100%
-       }
 
        body {
            min-height: 100vh;
            margin: 0;
-           padding: 38px 32px 72px;
            color: var(--paper);
            background-color: #101416;
            background-image: linear-gradient(110deg, rgba(8, 12, 14, 0.88), rgba(8, 12, 14, 0.45) 58%, rgba(8, 12, 14, 0.76)), url("https://wallpapercat.com/w/middle-retina/d/a/e/5819289-3840x2160-desktop-hd-pc-background.jpg");
-           background-position: center;
+           /* background-position: center; */
            background-size: cover;
            background-attachment: fixed;
            background-repeat: no-repeat;
@@ -33,9 +29,12 @@
            flex-direction: column;
        }
 
-       h1 {
-           width: min(1100px, 100%);
-           margin: 20px 20px 19px 18px;
+       h2 {
+
+           display: flex;
+           justify-content:center;
+           align-items: center;
+           width: min(1300px, 100%);
            color: var(--paper) !important;
            font-family: "Space Grotesk", sans-serif;
            font-size: clamp(45px, 5vw, 50px);
@@ -44,19 +43,34 @@
            text-align: left !important;
        }
 
-       h1 u {
+       h2 u {
            text-decoration: none;
        }
 
-       h2 {
-           position: absolute;
-           top: 28px;
-           right: max(32px, calc((100vw - 1080px) / 2));
-           margin: 0;
-           font-size: 14px;
-           font-weight: 500;
+       button {
+           font-family: "Space Grotesk", sans-serif;
+           font-size: clamp(20px, 2vw, 20px);
+           margin: 100px 0px 0px 30px;
+           background-color: var(--accent);
+           color: #151a14;
+           border-radius: 6px;
+           border: black
        }
 
+       header {
+           position: fixed;
+           height: 56px;
+           width: 100%;
+           top: 0;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding-left: 10px;
+           padding-right: 10px;
+       }
+       .heading{
+            margin-top: 150px;
+       }
        nav {
            display: flex;
            align-items: center;
@@ -75,7 +89,7 @@
 
        form {
            width: min(400px, 100%);
-           margin: 15px 20px 20px 150px;
+           margin: 15px auto 20px;
            padding: 40px 36px 35px;
            border: 1px solid var(--line);
            border-radius: 8px;
@@ -124,6 +138,7 @@
        }
 
        form button {
+           margin: auto;
            display: flex;
            width: 100%;
            min-height: 38px;
@@ -144,15 +159,20 @@
        form button:hover {
            transform: translateY(-1px);
            background: #aa2d2d;
-        }
-        
-        footer {
-            margin-top:auto;
-            color: var(--muted);
+       }
+
+       .action-button {
+           display: flex;
+           align-items: center;
+       }
+
+       footer {
+           margin-top: auto;
+           color: var(--muted);
            font-size: 12px;
            text-align: center;
-        }
-        
+       }
+
        @media (prefers-reduced-motion: reduce) {
 
            *,
@@ -160,19 +180,19 @@
            *::after {
                scroll-behavior: auto !important;
                transition-duration: 0.01ms !important;
-            }
-        }
-        
+           }
+       }
+
        p {
            text-align: center;
        }
 
        nav {
-           margin-top: 20px;
+           margin-top: 12px;
        }
 
-       body h1 {
-           color: whitesmoke!important;
+       body h2 {
+           color: whitesmoke !important;
        }
 
        .login-button,
@@ -210,112 +230,102 @@
        }
 
        header {
+           backdrop-filter:blur(15px);
+           border-bottom: 1px solid #C03737;
+           padding: 0px 50px 0px 50px;
+       }
+
+       header h1 {
            color: #c62828;
            font-size: xx-large;
        }
 
-       h1 button {
+       h2 button {
            margin-right: 12px;
            border: 0;
            border-radius: 6px;
            background-color: var(--accent);
-           color:#101416
+           color: #101416;
        }
 
-       h1 button:hover {
+       h2 button:hover {
            background-color: #aa2d2d;
            transform: translateY(-1px);
        }
 
-        body {
-            width: 100%;
-            min-width: 0;
-            padding: clamp(20px, 4vw, 48px) clamp(16px, 5vw, 56px) 36px;
-            background-attachment:fixed;
-        }
+       body {
+           width: 100%;
+           min-width: 0;
+           background-attachment: fixed;
+       }
 
-        h1 {
-            width: min(1100px, 100%);
-            margin: 28px auto 20px;
-            font-size: clamp(28px, 5vw, 40px);
-            line-height: 1.1;
-            overflow-wrap: anywhere;
-        }
+       h2 {
+           margin: 60px auto 20px;
+           font-size: clamp(28px, 5vw, 40px);
+           line-height: 1.1;
+           overflow-wrap: anywhere;
+       }
 
-        h1 button {
-            max-width: 100%;
-            margin: 0 30px 8px 0;
-            padding: 4px 6px;
-            font: inherit;
-            font-size: 0.42em;
-            vertical-align: middle;
-        }
+       h2 button {
+           max-width: 100%;
+           margin: 0 30px 8px 0;
+           padding: 4px 6px;
+           font: inherit;
+           font-size: 0.42em;
+           vertical-align: middle;
+       }
 
-        h2 {
-            right: clamp(16px, 5vw, 56px);
-        }
+       nav {
+           flex-wrap: wrap;
+           gap: 12px 20px;
+       }
 
-        nav {
-            flex-wrap: wrap;
-            gap: 12px 20px;
-        }
+       .login-button,
+       .home-button {
+           max-width: 100%;
+           margin: 8px 50px;
+           text-align: center;
+       }
 
-        nav a {
-            overflow-wrap: anywhere;
-        }
+       .signup-button {
+           max-width: 100%;
+           padding: 10px clamp(16px, 8vw, 87px);
+           text-align: center;
+       }
 
-        .login-button,
-        .home-button {
-            max-width: 100%;
-            margin: 8px 50px;
-            text-align: center;
-        }
+       @media (max-width: 600px) {
+           body {
+               background-attachment: scroll;
+           }
 
-        .signup-button {
-            max-width: 100%;
-            padding: 10px clamp(16px, 8vw, 87px);
-            text-align: center;
-        }
+           header h1 {
+               padding: 0px 0px 0px 12px;
+           }
 
-        @media (max-width: 700px) {
-            body {
-                padding: 78px 16px 32px;
-                background-attachment: scroll;
-            }
+           header {
+               padding: 12px 16px;
+               gap: 12px;
+           }
 
-            h1 {
-                margin: 12px auto 20px;
-            }
+           header nav {
+               gap: 12px;
+               flex-wrap: wrap;
+               justify-content: flex-end;
+           }
 
-            h2 {
-                position: static;
-                width: 100%;
-                margin: 0 auto 12px;
-                text-align: center;
-            }
+           header nav a {
+               font-size: 12px;
+           }
 
-            nav {
-                justify-content: center;
-                gap: 10px 16px;
-            }
+           footer {
+               margin-top: auto;
+           }
+       }
 
-            form {
-                margin: 12px auto 20px;
-            }
+       @media (max-width: 380px) {
 
-            footer {
-                margin-top: auto;
-            }
-        }
-
-        @media (max-width: 380px) {
-            body {
-                padding-right: 12px;
-                padding-left: 12px;
-            }
-
-            form {
-                padding-right: 16px;
-                padding-left: 20px;
-            }
-        }
+           form {
+               padding-right: 16px;
+               padding-left: 20px;
+           }
+       }

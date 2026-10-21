@@ -6,25 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='style.css' )}}">
-    <header>Signova</header>
 </head>
 
 <body>
+    <header>
+        <h1>Signova</h1>
+        <nav>
+            <a href="{{ url_for('contact')}}">Contact us</a>
+            <a href="{{ url_for('about')}}">About us</a>
+        </nav>
+    </header>
     <div>
-        <h1><button type="button" onclick="history.back()">
-                ← Back
-            </button>Congratulations!</h1>
+        <button type="button" onclick="history.back()">
+            ← Back
+        </button>
+        <h2>Congratulations!</h2>
     </div>
     <form>
         <p>Welcome to Signova.<br>You have successfulled registered!</p>
         <a href="{{ url_for('home') }}" class="home-button">Move to Home Page</a>
     </form>
-    <h2>
-        <nav>
-            <a href="{{ url_for('contact')}}">Contact us</a>
-            <a href="{{ url_for('about')}}">About us</a>
-        </nav>
-    </h2>
     <footer>&copy; 2026 Sign-up. All rights reserved.</footer>
 </body>
 

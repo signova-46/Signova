@@ -49,7 +49,7 @@ def signup():
             flash("Passwords do not match.","error")
             return redirect(url_for("signup"))
 
-        conn=getdb()
+        conn=getdb()    
         cursor=conn.cursor()
         try:
             cursor.execute(
@@ -95,7 +95,7 @@ def login():
                     return redirect(url_for("welcomeback"))
 
                 else:
-                    flash("Username or Email doesn't exists.","error")
+                    flash("Invalid Credentials","error")
                     return redirect(url_for("login"))
 
             finally:

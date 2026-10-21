@@ -6,23 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-up</title>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
-    <header>Signova</header>
 </head>
 
 <body>
-    <div>
-        <h1>
-            <button type="button" onclick="history.back()">
-                ← Back
-            </button>Sign-up
-        </h1>
-    </div>
-    <h2>
+    <header>
+        <h1>Signova</h1>
         <nav>
             <a href="{{ url_for('contact')}}">Contact us</a>
             <a href="{{ url_for('about')}}">About us</a>
         </nav>
-    </h2>
+    </header>
+    <div>
+        <button type="button" onclick="history.back()">
+            ← Back
+        </button>
+        <h2>Sign-up</h2>
+    </div>
+
+
     <form method="post" style="text-align: center"
         onsubmit="if(password.value!==confirm_password.value){err.style.display='block';return false;}">
 
@@ -33,7 +34,7 @@
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" pattern=".+@gmail\.com" placeholder="Enter your email" required>
+            <input type="email" id="email" name="email" pattern=".+@gmail\.co" placeholder="Enter your email" required>
         </div>
         <div>
             <label for="password">Password:</label>
