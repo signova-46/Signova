@@ -32,7 +32,7 @@
        h2 {
 
            display: flex;
-           justify-content:center;
+           justify-content: center;
            align-items: center;
            width: min(1300px, 100%);
            color: var(--paper) !important;
@@ -57,6 +57,11 @@
            border: black
        }
 
+       button:hover {
+           transform: translateY(-1px);
+           background: #aa2d2d;
+       }
+
        header {
            position: fixed;
            height: 56px;
@@ -68,9 +73,11 @@
            padding-left: 10px;
            padding-right: 10px;
        }
-       .heading{
-            margin-top: 150px;
+
+       .heading {
+           margin-top: 150px;
        }
+
        nav {
            display: flex;
            align-items: center;
@@ -230,7 +237,7 @@
        }
 
        header {
-           backdrop-filter:blur(15px);
+           backdrop-filter: blur(15px);
            border-bottom: 1px solid #C03737;
            padding: 0px 50px 0px 50px;
        }
