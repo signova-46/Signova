@@ -49,7 +49,7 @@ def signup():
             flash("Passwords do not match.","error")
             return redirect(url_for("signup"))
 
-        conn=getdb()    
+        conn=getdb()
         cursor=conn.cursor()
         try:
             cursor.execute(
