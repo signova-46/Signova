@@ -20,7 +20,6 @@ def getdb():
         use_pure=True
     )
 
-
 @app.route("/")
 def signova():
     return render_template("signova.html")
@@ -163,7 +162,7 @@ def forgot():
             flash("Unable to send code. Please try again.", "error")
             return redirect(url_for("forgot"))
 
-        flash("Verification Code has been sent through gmail.", "info")
+        flash("Verification Code has been sent to f{email}.", "info")
         return redirect(url_for("verify_otp"))
 
     return render_template("forgot.html")
