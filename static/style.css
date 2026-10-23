@@ -54,7 +54,7 @@
            background-color: var(--accent);
            color: #151a14;
            border-radius: 6px;
-           border: black
+           border: black;
        }
 
        button:hover {
