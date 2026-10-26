@@ -50,7 +50,7 @@
        button {
            font-family: "Space Grotesk", sans-serif;
            font-size: clamp(20px, 2vw, 20px);
-           margin: 100px 0px 0px 30px;
+           margin: 85px 0px 0px 30px;
            background-color: var(--accent);
            color: #151a14;
            border-radius: 6px;
@@ -96,14 +96,25 @@
 
        form {
            width: min(400px, 100%);
-           margin: 15px auto 20px;
-           padding: 40px 36px 35px;
+           margin: 0px auto 20px;
+           padding: 20px 36px 20px;
            border: 1px solid var(--line);
+           border-color: #c03737c5;
            border-radius: 8px;
-           background: rgba(13, 19, 21, 0.9);
-           box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+           background: rgba(13, 19, 21, 0.13);
+           box-shadow: 0 24px 70px rgba(0, 0, 0, 0.959);
            text-align: left !important;
-           backdrop-filter: blur(14px);
+           backdrop-filter: blur(4px);
+
+           /* background: rgba(13, 19, 21, 0.35);
+           backdrop-filter: blur(10px);
+           -webkit-backdrop-filter: blur(10px);
+
+           border: 1px solid var(--accent);
+           border-radius: 8px;
+
+           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); */
+
        }
 
        form br {
@@ -282,7 +293,7 @@
        }
 
        h2 {
-           margin: 60px auto 20px;
+           margin: -10px auto 20px;
            font-size: clamp(28px, 5vw, 40px);
            line-height: 1.1;
            overflow-wrap: anywhere;
@@ -344,6 +355,7 @@
                margin-top: auto;
            }
        }
+
 
        @media (max-width: 380px) {
 
