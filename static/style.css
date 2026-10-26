@@ -47,7 +47,8 @@
            text-decoration: none;
        }
 
-       button {
+       .back {
+            position: fixed;
            font-family: "Space Grotesk", sans-serif;
            font-size: clamp(20px, 2vw, 20px);
            margin: 85px 0px 0px 30px;
@@ -96,7 +97,7 @@
 
        form {
            width: min(400px, 100%);
-           margin: 0px auto 20px;
+           margin: 15px auto 20px;
            padding: 20px 36px 20px;
            border: 1px solid var(--line);
            border-color: #c03737c5;
@@ -293,7 +294,7 @@
        }
 
        h2 {
-           margin: -10px auto 20px;
+           margin: 110px auto 20px;
            font-size: clamp(28px, 5vw, 40px);
            line-height: 1.1;
            overflow-wrap: anywhere;
