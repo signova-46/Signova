@@ -49,7 +49,7 @@ def signup():
         confirm=request.form["confirm_password"]
 
         if password!=confirm:
-            flash("Passwords do not match.","error")
+            flash("⚠️ Passwords do not match!","error")
             return redirect(url_for("signup"))
 
         conn=getdb()
@@ -98,7 +98,7 @@ def login():
                     return redirect(url_for("welcomeback"))
 
                 else:
-                    flash("Invalid Credentials","error")
+                    flash("⚠️ Invalid Credentials","error")
                     return redirect(url_for("login"))
 
             finally:
@@ -146,7 +146,7 @@ def forgot():
             conn.close()
 
         if not user:
-            flash("Email is not registered!", "info")
+            flash("⚠️ Email is not registered!", "info")
             return redirect(url_for("forgot"))
 
         otp = str(secrets.randbelow(1000000)).zfill(6)
