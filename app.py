@@ -8,17 +8,21 @@ app.secret_key="change this to a random secret"
 
 
 def getdb():
-    return mysql.connector.connect(
-        host=os.environ["DB_HOST"],
-        port=int(os.environ["DB_PORT"]),
-        user=os.environ["DB_USER"],
-        password=os.environ["DB_PASSWORD"],
-        database=os.environ["DB_NAME"],
-        ssl_ca=os.path.join(os.path.dirname(__file__), "ca.pem"),
-        ssl_verify_cert=True,
-        ssl_verify_identity=True,
-        use_pure=True
+    try:
+        return mysql.connector.connect(
+            host=os.environ["DB_HOST"],
+            port=int(os.environ["DB_PORT"]),
+            user=os.environ["DB_USER"],
+            password=os.environ["DB_PASSWORD"],
+            database=os.environ["DB_NAME"],
+            ssl_ca=os.path.join(os.path.dirname(__file__), "ca.pem"),
+            ssl_verify_cert=True,
+            ssl_verify_identity=True,
+            use_pure=True
     )
+    except:
+        flash("Try again later!","error")
+        return render_template("signova.html")
 
 @app.route("/")
 def signova():
@@ -36,7 +40,7 @@ def about():
 def contact():
     return render_template("contact.html")
 
-@app.route("/signup",methods=['GET','POST'])
+@app.route("/index",methods=['GET','POST'])
 def signup():
     if request.method == "POST":
         username=request.form["username"].strip()
