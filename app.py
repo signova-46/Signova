@@ -40,7 +40,7 @@ def about():
 def contact():
     return render_template("contact.html")
 
-@app.route("/index",methods=['GET','POST'])
+@app.route("/signup",methods=['GET','POST'])
 def signup():
     if request.method == "POST":
         username=request.form["username"].strip()
@@ -71,7 +71,7 @@ def signup():
         session ["new_user"]=username
         return redirect(url_for("submit"))
     
-    return render_template("index.html")
+    return render_template("signup.html")
 
 @app.route("/login",methods=['GET','POST'])
 def login():
