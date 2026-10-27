@@ -71,7 +71,7 @@ def signup():
         session ["new_user"]=username
         return redirect(url_for("submit"))
     
-    return render_template("signup.html")
+    return render_template("index.html")
 
 @app.route("/login",methods=['GET','POST'])
 def login():
