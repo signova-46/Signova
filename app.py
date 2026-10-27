@@ -51,7 +51,6 @@ def signup():
         if password!=confirm:
             flash("⚠️ Passwords do not match!","error")
             return redirect(url_for("signup"))
-
         conn=getdb()
         cursor=conn.cursor()
         try:
@@ -85,7 +84,7 @@ def login():
             try:
                 cursor.execute(
                     "SELECT * FROM users WHERE email=%s or username=%s",
-                    (login,login)
+                    (login)
                 )
 
                 user=cursor.fetchone()
