@@ -32,7 +32,7 @@
             <label for="password">Password:</label>
             <input id="password" name="password" type="password" pattern="[A-Za-z\d@$-!%*?&]{8,}$"
                 placeholder="Enter your password" required>
-            <!-- <span id="err" style="color: red; display: none;">⚠️ Invalid Password!</span> -->
+            <span id="err" style="color: red; display: none;">⚠️ Invalid Password!</span>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}
