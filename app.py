@@ -81,7 +81,7 @@ def login():
             try:
                 cursor.execute(
                     "SELECT * FROM users WHERE email=%s or username=%s",
-                    (login)
+                    (login,login)
                 )
 
                 user=cursor.fetchone()
