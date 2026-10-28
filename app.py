@@ -8,7 +8,6 @@ app.secret_key="change this to a random secret"
 
 
 def getdb():
-    try:
         return mysql.connector.connect(
             host=os.environ["DB_HOST"],
             port=int(os.environ["DB_PORT"]),
@@ -20,9 +19,6 @@ def getdb():
             ssl_verify_identity=True,
             use_pure=True
     )
-    except:
-        flash("Try again later!","error")
-        return render_template("signova.html")
 
 @app.route("/")
 def signova():
