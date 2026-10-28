@@ -77,7 +77,7 @@ def login():
             password=request.form['password']
 
             conn=getdb()
-            cursor=conn.cursor(dictionary=True)
+            cursor=conn.cursor(dictionary=True,buffered=True)
 
             try:
                 cursor.execute(
