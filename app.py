@@ -101,8 +101,8 @@ def login():
                     return redirect(url_for("login"))
 
             finally:
-                cursor.close()
                 conn.close()
+                cursor.close()
         return render_template("login.html")
 
 OTP_TTL=300
