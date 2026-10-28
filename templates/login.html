@@ -22,8 +22,8 @@
         </button>
         <h2>Log-in</h2>
     </div>
-    <form method="post" style="text-align: center"
-        onsubmit="if(login.value.trim()==='' || password.value===''){err.style.display='block';return false;}">
+    <form method="post" style="text-align: center">
+        <!-- onsubmit="if(login.value.trim()==='' || password.value===''){err.style.display='block';return false;}" -->
         <div>
             <label for="username and email">Username or Email:</label>
             <input type="text" name="login" placeholder="Enter your email or username" required>
@@ -32,7 +32,7 @@
             <label for="password">Password:</label>
             <input id="password" name="password" type="password" pattern="[A-Za-z\d@$-!%*?&]{8,}$"
                 placeholder="Enter your password" required>
-            <span id="err" style="color: red; display: none;">⚠️ Invalid Password!</span>
+            <!-- <span id="err" style="color: red; display: none;">⚠️ Invalid Password!</span> -->
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}
