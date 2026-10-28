@@ -4,21 +4,38 @@ from email.message import EmailMessage
 from werkzeug.security import generate_password_hash,check_password_hash
 
 app=Flask(__name__)
-app.secret_key="change this to a random secret"
+
+# Set SECRET_KEY in Vercel -> Settings -> Environment Variables.
+# Generate one with: python -c "import secrets; print(secrets.token_hex(32))"
+app.secret_key=os.environ["SECRET_KEY"]
 
 
 def getdb():
-        return mysql.connector.connect(
-            host=os.environ["DB_HOST"],
-            port=int(os.environ["DB_PORT"]),
-            user=os.environ["DB_USER"],
-            password=os.environ["DB_PASSWORD"],
-            database=os.environ["DB_NAME"],
-            ssl_ca=os.path.join(os.path.dirname(__file__), "ca.pem"),
-            ssl_verify_cert=True,
-            ssl_verify_identity=True,
-            use_pure=True
+    return mysql.connector.connect(
+        host=os.environ["DB_HOST"],
+        port=int(os.environ["DB_PORT"]),
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASSWORD"],
+        database=os.environ["DB_NAME"],
+        ssl_ca=os.path.join(os.path.dirname(__file__), "ca.pem"),
+        ssl_verify_cert=True,
+        ssl_verify_identity=True,
+        use_pure=True,
+        connection_timeout=5      # fail fast instead of hanging until Vercel kills the function
     )
+
+
+@app.errorhandler(mysql.connector.Error)
+def handle_db_error(e):
+    # Any database failure (connection refused, too many connections, timeout...)
+    app.logger.error("Database error: %s", e)
+    return "Service temporarily unavailable. Please try again in a moment.", 503
+
+
+@app.route("/favicon.ico")
+def favicon():
+    return "", 204
+
 
 @app.route("/")
 def signova():
@@ -36,72 +53,86 @@ def about():
 def contact():
     return render_template("contact.html")
 
+
 @app.route("/signup",methods=['GET','POST'])
 def signup():
     if request.method == "POST":
-        username=request.form["username"].strip()
-        email=request.form["email"].strip()
-        password=request.form["password"]
-        confirm=request.form["confirm_password"]
+        username=request.form.get("username","").strip()
+        email=request.form.get("email","").strip()
+        password=request.form.get("password","")
+        confirm=request.form.get("confirm_password","")
+
+        if not username or not email or not password:
+            flash("⚠️ Please fill in all fields.","error")
+            return redirect(url_for("signup"))
+
+        if len(username)>50 or len(email)>120:
+            flash("⚠️ Username or email is too long.","error")
+            return redirect(url_for("signup"))
 
         if password!=confirm:
             flash("⚠️ Passwords do not match!","error")
             return redirect(url_for("signup"))
+
         conn=getdb()
         cursor=conn.cursor()
-        
+
         try:
             cursor.execute(
-                "INSERT INTO users(username,email,password_hash) VALUES (%s,%s,%s)" ,
+                "INSERT INTO users(username,email,password_hash) VALUES (%s,%s,%s)",
                 (username,email,generate_password_hash(password))
             )
             conn.commit()
-            
+
         except mysql.connector.IntegrityError:
             flash("Username or Email already exists.","error")
             return redirect(url_for("signup"))
-        
+
         finally:
             cursor.close()
             conn.close()
 
-        session ["new_user"]=username
+        session["new_user"]=username
         return redirect(url_for("submit"))
-    
+
     return render_template("index.html")
+
 
 @app.route("/login",methods=['GET','POST'])
 def login():
-        if request.method=='POST':
-            login=request.form['login'].strip()
-            password=request.form['password']
+    if request.method=='POST':
+        identifier=request.form.get('login',"").strip()
+        password=request.form.get('password',"")
 
-            conn=getdb()
-            cursor=conn.cursor(dictionary=True,buffered=True)
+        if not identifier or not password:
+            flash("⚠️ Invalid Credentials","error")
+            return redirect(url_for("login"))
 
-            try:
-                cursor.execute(
-                    "SELECT * FROM users WHERE email=%s or username=%s",
-                    (login,login)
-                )
+        conn=getdb()
+        cursor=conn.cursor(dictionary=True,buffered=True)   # buffered avoids "Unread result found"
 
-                user=cursor.fetchone()
+        try:
+            cursor.execute(
+                "SELECT * FROM users WHERE email=%s or username=%s",
+                (identifier,identifier)
+            )
 
-                if user and check_password_hash(user["password_hash"],password):
+            user=cursor.fetchone()
 
-                    session["user_id"]=user["id"]
-                    session["username"]=user["username"]
+            if user and check_password_hash(user["password_hash"],password):
+                session["user_id"]=user["id"]
+                session["username"]=user["username"]
+                return redirect(url_for("welcomeback"))
 
-                    return redirect(url_for("welcomeback"))
+            flash("⚠️ Invalid Credentials","error")
+            return redirect(url_for("login"))
 
-                else:
-                    flash("⚠️ Invalid Credentials","error")
-                    return redirect(url_for("login"))
+        finally:
+            cursor.close()
+            conn.close()
 
-            finally:
-                cursor.close()
-                conn.close()
-        return render_template("login.html")
+    return render_template("login.html")
+
 
 OTP_TTL=300
 MAX_ATTEMPTS=5
@@ -114,8 +145,8 @@ def send_otp_email(to_email,otp):
     msg["Subject"]="Your OTP"
     msg["From"]=os.environ["MAIL_USER"]
     msg["To"]=to_email
-    msg.set_content(f"Your Verfication Code is {otp}.It will expire in 5 minutes!")
-    with smtplib.SMTP_SSL("smtp.gmail.com",465) as server:
+    msg.set_content(f"Your Verification Code is {otp}. It will expire in {OTP_TTL//60} minutes!")
+    with smtplib.SMTP_SSL("smtp.gmail.com",465,timeout=10) as server:   # timeout prevents hanging
         server.login(os.environ["MAIL_USER"],os.environ["MAIL_APP_PASSWORD"])
         server.send_message(msg)
 
@@ -130,7 +161,7 @@ def forgot():
             return redirect(url_for("forgot"))
 
         conn = getdb()
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True,buffered=True)
 
         try:
             cursor.execute(
@@ -158,7 +189,7 @@ def forgot():
         try:
             send_otp_email(email, otp)
         except Exception as e:
-            print("Email error:", e)
+            app.logger.error("Email error: %s", e)
             session.pop("reset", None)
             flash("Unable to send code. Please try again.", "error")
             return redirect(url_for("forgot"))
@@ -169,7 +200,6 @@ def forgot():
     return render_template("forgot.html")
 
 
-
 @app.route("/verify_otp", methods=["GET", "POST"])
 def verify_otp():
     data = session.get("reset")
@@ -178,7 +208,7 @@ def verify_otp():
         flash("Please request a new verification code.", "error")
         return redirect(url_for("forgot"))
 
-    if time.time() > data["expiry"]:
+    if time.time() > data.get("expiry", 0):
         session.pop("reset", None)
         flash("Code has expired! Please request a new one.", "error")
         return redirect(url_for("forgot"))
@@ -220,7 +250,11 @@ def verify_otp():
 
 @app.route("/welcomeback")
 def welcomeback():
-    return render_template("welcomeback.html", username=session["username"])
+    username = session.get("username")
+    if not username:
+        flash("Please log in first.", "error")
+        return redirect(url_for("login"))
+    return render_template("welcomeback.html", username=username)
 
 
 @app.route("/submit")
@@ -236,14 +270,18 @@ def reset():
         flash("Please verify your OTP first.", "error")
         return redirect(url_for("forgot"))
 
-    if time.time() > data["expiry"]:
+    if time.time() > data.get("expiry", 0):
         session.pop("reset", None)
         flash("Code has expired!", "error")
         return redirect(url_for("forgot"))
 
     if request.method == "POST":
-        password = request.form["password"]
-        confirm = request.form["confirm_password"]
+        password = request.form.get("password", "")
+        confirm = request.form.get("confirm_password", "")
+
+        if not password:
+            flash("Please enter a new password.", "error")
+            return redirect(url_for("reset"))
 
         if password != confirm:
             flash("Passwords do not match!", "error")
@@ -271,5 +309,6 @@ def reset():
 
     return render_template("reset.html")
 
-if __name__== "__main__":
-    app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(debug=False)
