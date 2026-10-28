@@ -53,6 +53,7 @@ def signup():
             return redirect(url_for("signup"))
         conn=getdb()
         cursor=conn.cursor()
+        
         try:
             cursor.execute(
                 "INSERT INTO users(username,email,password_hash) VALUES (%s,%s,%s)" ,
