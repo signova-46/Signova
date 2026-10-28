@@ -56,6 +56,7 @@ def signup():
                 (username,email,generate_password_hash(password))
             )
             conn.commit()
+            
         except mysql.connector.IntegrityError:
             flash("Username or Email already exists.","error")
             return redirect(url_for("signup"))
