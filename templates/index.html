@@ -38,13 +38,29 @@
         </div>
         <div>
             <label for="password">Password:</label>
-            <input id="password" name="password" type="password" pattern="[A-Za-z\d@$!%*?&]{8,}$"
-                placeholder="Enter your password" required>
+            <div class="password-control">
+                <input class="password-visibility-toggle" type="checkbox" id="password-visibility"
+                    aria-controls="password">
+                <label class="password-visibility-label" for="password-visibility">
+                    <span class="show-password">Show</span>
+                    <span class="hide-password">Hide</span>
+                </label>
+                <input class="password-input" id="password" name="password" type="text"
+                    pattern="[A-Za-z\d@$!%*?&]{8,}$" placeholder="Enter your password" required>
+            </div>
         </div>
         <div>
             <label for="confirm_password" style="text-align: center;color: white">Confirm Password:</label>
-            <input id="confirm_password" name="confirm_password" type="password" pattern="[A-Za-z\d@-$!%*?&]{8,}$"
-                placeholder="Confirm your password" required>
+            <div class="password-control">
+                <input class="password-visibility-toggle" type="checkbox" id="confirm-password-visibility"
+                    aria-controls="confirm_password">
+                <label class="password-visibility-label" for="confirm-password-visibility">
+                    <span class="show-password">Show</span>
+                    <span class="hide-password">Hide</span>
+                </label>
+                <input class="password-input" id="confirm_password" name="confirm_password" type="text"
+                    pattern="[A-Za-z\d@-$!%*?&]{8,}$" placeholder="Confirm your password" required>
+            </div>
             <!-- <span id="err" style="color: red; display: none;">⚠️ Passwords do not match!</span> -->
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}

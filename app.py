@@ -81,7 +81,7 @@ def login():
 
             try:
                 cursor.execute(
-                    "SELECT * FROM users WHERE email=%s or username=%s",
+                    "SELECT * FROM users WHERE email=%s or username=%s LIMIT 1",
                     (login,login)
                 )
 

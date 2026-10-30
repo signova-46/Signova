@@ -264,6 +264,58 @@
            color: #ffb4b4;
        }
 
+       .password-control {
+           position: relative;
+       }
+
+       .password-control .password-input {
+           padding-right: 72px;
+       }
+
+       .password-control .password-visibility-toggle {
+           position: absolute;
+           top: 10px;
+           left: 0;
+           width: 1px;
+           height: 1px;
+           margin: 0;
+           padding: 0;
+           border: 0;
+           opacity: 0;
+       }
+
+       .password-control .password-visibility-toggle:focus-visible + .password-visibility-label {
+           outline: 2px solid var(--paper);
+           outline-offset: 3px;
+       }
+
+       .password-control .password-visibility-label {
+           position: absolute;
+           top: 10px;
+           right: 12px;
+           z-index: 1;
+           margin: 0;
+           color: var(--paper) !important;
+           cursor: pointer;
+       }
+
+       .password-visibility-label .hide-password,
+       .password-visibility-toggle:checked + .password-visibility-label .show-password {
+           display: none;
+       }
+
+       .password-visibility-toggle:checked + .password-visibility-label .hide-password {
+           display: inline;
+       }
+
+       .password-input {
+           -webkit-text-security: disc;
+       }
+
+       .password-visibility-toggle:checked ~ .password-input {
+           -webkit-text-security: none;
+       }
+
        header {
            backdrop-filter: blur(15px);
            border-bottom: 1px solid #C03737;
